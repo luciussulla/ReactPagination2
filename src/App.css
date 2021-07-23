@@ -1,10 +1,72 @@
+.App {
+  width: 100%;
+  height: 100vh; 
+  background-color: rgb(221, 220, 220);
+}
 
+.members-section {
+  padding: 20px; 
+  display: flex; 
+  justify-content: space-around;
+  flex-wrap: wrap; 
+
+}
 .member {
+  width: 250px; 
+  height: 180px; 
+  position: relative; 
   margin-top: 30px; 
   margin-left: 30px; 
-  border: 1px solid red; 
+  /* top: 20%; 
+  left: 50%; 
+  transform: translatex(-50%); */
+  background-color: #fff;
+  box-shadow: 0 0 3px 4px rgba(0,0,0,0.2);
+  border-radius: 5px; 
+  /* border: 1px solid blue;  */
+  background: linear-gradient(
+              to bottom, 
+              rgb(220,220,220) 30%,
+              rgb(255,255,255) 30%
+  )     
+}
+
+.btn {
+  background-color: rgb(180, 180, 245);
+  border: none; 
+  outline: none;
+  padding: 10px 15px; 
+  margin-right: 10px; 
+  border-radius: 3px; 
+  color: white;
+  margin-top: 50px; 
 }
 
 .active-btn {
-  border: 2px solid red; 
+  background-color: rgb(144, 144, 216);
+}
+
+.picture {
+  position: relative; 
+  top: 10%; 
+  left: 50%; 
+  transform: translateX(-50%);
+  width: 50px; 
+  height: 50px; 
+  border-radius: 50%;
+  box-shadow: 0 0 3px 3px rgba(0,0,0,0.2);
+  border: 2px solid white; 
+}
+
+.info {
+  padding: 15px; 
+  position: relative; 
+  top: 40%;
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  /* border: 1px solid red;  */
+}
+.name {
+  font-size: .8rem; 
+  text-align: center;
 }

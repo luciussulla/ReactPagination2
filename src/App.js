@@ -1,10 +1,11 @@
 import './App.css';
 import Member from './components/Member'
 import paginate from './utils/paginate'
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Buttons from './components/Buttons'
+import useFetch from './components/useFetch'
 
-const data = [
+const defaultdata = [
   {id:1, name: "name"}, 
   {id:2, name: "bobo"}, 
   {id:3, name: "mimi"}, 
@@ -17,27 +18,21 @@ const data = [
   {id:10, name: "mimi"}, 
 ]
 const numPerPage = 3
+const url = 'https://randomuser.me/api/?results=4'
 
 function App() {
-  const [people, setPeople] = useState(data)
-  const [activePage, setActivePage] = useState(1)
+  const {loading, data} = useFetch(url)
 
-  const handlePaginate = (activePage)=> {
-    const peopleArray = paginate(data,numPerPage,activePage)
-    setPeople(peopleArray)
-    setActivePage(activePage)
-    console.log(peopleArray, activePage)
-  }
-
+  console.log(data)
   return (
     <div className="App">
       <section className="members-section">
-        {people.map(item=> {
+        {loading ? "loading..." : data.map(item=> {
           return <Member key={item.id} {...item}/>
         })}
       </section>
       <div className="pagination-buttons">
-        <Buttons data={data} activePage={activePage} numPerPage={numPerPage} handlePaginate={handlePaginate}/>
+        {/* <Buttons data={data} activePage={activePage} numPerPage={numPerPage} handlePaginate={handlePaginate}/> */}
       </div>
     </div>
   );

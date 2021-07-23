@@ -1,9 +1,15 @@
 import React from 'react'
 
-export default function Member({id, name}) {
+export default function Member({email, phone, photo}) {
+
   return (
     <div className="member">
-      <span>{id}</span> <span> {name}</span>
+      <img className="picture" src={photo} />
+      <div className="info">
+       <p className="name">{email}</p>
+       <p className="name">{phone}</p>
+      </div>
     </div>
   )
+
 }
