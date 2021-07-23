@@ -31,7 +31,17 @@
   )     
 }
 
-.btn {
+.btn-container {
+  position: relative; 
+  margin-top: 30px; 
+  left: 50%; 
+  transform: translateX(-50%);
+  /* border: 1px solid red;  */
+
+  display: flex; 
+  justify-content: center;
+}
+.page-btn {
   background-color: rgb(180, 180, 245);
   border: none; 
   outline: none;
@@ -41,9 +51,31 @@
   color: white;
   margin-top: 50px; 
 }
+.page-btn.active {
+  background-color: rgb(54,54,151);
+}
+.page-btn:hover {
+  background-color: rgb(54, 54, 151);
+}
 
 .active-btn {
   background-color: rgb(144, 144, 216);
+}
+
+.prev-btn, .next-btn {
+  background-color: transparent;
+  padding: 4px 8px; 
+  outline: none; 
+  color: #444; 
+  border: 1px solid #444; 
+}
+
+.prev-btn:active,
+.next-btn:active, 
+.next-btn:hover, 
+.prev-btn:hover {
+  background-color: rgb(54, 54, 151);
+  color: white; 
 }
 
 .picture {

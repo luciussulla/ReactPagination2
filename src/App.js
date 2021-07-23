@@ -25,13 +25,37 @@ function App() {
   const [page, setPage] = useState(0)
   const [users, setUsers] = useState([])
 
+  const handleClick = (idx)=> {
+    setPage(idx)
+    console.log(idx)
+  }
+
   useEffect(()=> {
      if(loading)return
      console.log('in effect', returnData)
      setUsers(returnData[page])
-  },[loading])
+  },[loading, page])
 
-  console.log(returnData)
+  const nextPage = ()=> {
+    setPage(oldPage=> {
+      let nextPage = oldPage +1
+      if(nextPage> returnData.length-1) {
+        nextPage =0
+      }
+      return nextPage
+    })
+  }
+
+  const prevPage = ()=> {
+    setPage(oldPage=> {
+      let prevPage = oldPage - 1
+      if(prevPage < 0) {
+        prevPage = returnData.length-1
+      }
+      return prevPage
+    })
+  }
+
   return (
     <div className="App">
       <section className="members-section">
@@ -39,9 +63,19 @@ function App() {
           return <Member key={item.email} {...item}/>
         })}
       </section>
-      <div className="pagination-buttons">
-        {/* <Buttons data={data} activePage={activePage} numPerPage={numPerPage} handlePaginate={handlePaginate}/> */}
-      </div>
+        { !loading && <div className="btn-container">
+          <button className="page-btn prev-btn" onClick={prevPage}>prev</button>
+          {returnData.map((item, idx)=> {
+            return <button  key={idx} 
+                            className={`page-btn ${idx===page && 'active'}`}
+                            onClick={()=> handleClick(idx)}>
+              {idx+1}
+            </button>
+          })
+          }
+          <button className="page-btn next-btn" onClick={nextPage}>next</button>
+          </div>
+        }
     </div>
   );
 }
