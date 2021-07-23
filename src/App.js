@@ -21,14 +21,22 @@ const numPerPage = 3
 const url = 'https://randomuser.me/api/?results=4'
 
 function App() {
-  const {loading, data} = useFetch(url)
+  const {loading, returnData} = useFetch(url)
+  const [page, setPage] = useState(0)
+  const [users, setUsers] = useState([])
 
-  console.log(data)
+  useEffect(()=> {
+     if(loading)return
+     console.log('in effect', returnData)
+     setUsers(returnData[page])
+  },[loading])
+
+  console.log(returnData)
   return (
     <div className="App">
       <section className="members-section">
-        {loading ? "loading..." : data.map(item=> {
-          return <Member key={item.id} {...item}/>
+        {loading ? "loading..." : users.map(item=> {
+          return <Member key={item.email} {...item}/>
         })}
       </section>
       <div className="pagination-buttons">

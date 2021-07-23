@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react'
+import paginate from '../utils/paginate'
 
 export default function useFetch(url) {
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState(null)
+  const [returnData, setReturnData] = useState(null)
 
   const getUsers = async ()=> {
     // setLoading(true)
@@ -16,8 +17,13 @@ export default function useFetch(url) {
         photo: user.picture.thumbnail,
       }
     })
-    console.log(users)
-    setData(users)
+    console.log(users, "In fetch")
+    const paginatedUsers = paginate(users)
+    // setReturnData(()=> {
+    //   console.log(paginate(users), "in setReturn Data")
+    //   return paginate(users)
+    // })
+    setReturnData(paginatedUsers)
     setLoading(false)
   } 
 
@@ -25,5 +31,5 @@ export default function useFetch(url) {
     getUsers()
   }, [url])
 
-  return {loading, data}
+  return {loading, returnData}
 }
